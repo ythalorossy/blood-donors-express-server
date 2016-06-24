@@ -1,11 +1,12 @@
 var express = require('express'),
   mongoose = require('mongoose'),
 	routerDonors = express.Router(),
-	Donor = mongoose.model('Donor')
+	Donor = mongoose.model('Donor'),
+	Verify    = require('../verify')
 	;
 
 routerDonors.route('/')
-	.all(function(err, res, next){
+	.all(Verify.verifyOrdinaryUser, function(err, res, next){
     next();
 	})
 	.get(function(req, res, next) {
