@@ -18,8 +18,8 @@ var config = {
     app: {
       name: 'blood-donors-express-server'
     },
-    port: process.env.PORT || 4000,
-    db: 'mongodb://localhost/blood-donors-express-server-development',
+    port: process.env.PORT || 8080,
+    db: 'mongodb://blooddonor:blooddonor@ds019033.mlab.com:19033/bloodexpress',
 		authenticate : authenticate,
 		secretKey: secretKey
   },
@@ -30,7 +30,7 @@ var config = {
       name: 'blood-donors-express-server'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/blood-donors-express-server-test',
+    db: 'mongodb://blooddonor:blooddonor@ds019033.mlab.com:19033/bloodexpress',
 		authenticate : authenticate,
 		secretKey: secretKey
   },
@@ -41,7 +41,7 @@ var config = {
       name: 'blood-donors-express-server'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/blood-donors-express-server-production',
+    db: 'mongodb://blooddonor:blooddonor@ds019033.mlab.com:19033/bloodexpress',
 		authenticate : authenticate,
 		secretKey: secretKey
   }

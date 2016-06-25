@@ -9,21 +9,6 @@ var User = new Schema({
     password: String,
     OauthId: String,
     OauthToken: String,
-    firstname: {
-      type: String,
-      default: ''
-    },
-    lastname: {
-      type: String,
-      default: ''
-    },
-		lastPosition: {
-			type: mongoose.Schema.Types.Point
-		},
-		lastDonation: {
-			type: Date,
-			default: Date.now
-		},
     admin:   {
         type: Boolean,
         default: false
