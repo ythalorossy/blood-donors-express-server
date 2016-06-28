@@ -1,7 +1,5 @@
 var express = require('express');
 var glob = require('glob');
-
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -11,36 +9,30 @@ var passport = require('passport');
 var cors = require('cors'); //https://github.com/expressjs/cors
 
 module.exports = function(app, config) {
+
   var env = process.env.NODE_ENV || 'development';
+
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
-
 
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'jade');
 
   // CORS
-  // app.use(function(req, res, next) {
-  //   res.header("Access-Control-Allow-Origin", "*");
-  //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  //   next();
-  // });
   app.use(cors());
   
-  // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(compress());
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
 
-	// passport config
+	// Init Passport Authenticate
 	app.use(passport.initialize());
 
+  // Load Controllers
   var controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach(function (controller) {
     require(controller)(app);
